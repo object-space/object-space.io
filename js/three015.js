@@ -1,14 +1,14 @@
 var framesPerSecond = 30;
 
 // 태양 초기 위치
-parameters.azimuth += 0.2;
+parameters.azimuth += 0.1;
 
-var model;
-var loaderMesh = new THREE.ColladaLoader();
-loaderMesh.load("images/location02.dae", function (collada) {
-  model = collada.scene;
-  scene.add(model);
-});
+// var model;
+// var loaderMesh = new THREE.ColladaLoader();
+// loaderMesh.load("images/location02.dae", function (collada) {
+//   model = collada.scene;
+//   scene.add(model);
+// });
 
 // 돌고래
 var dolphin = new Object();
@@ -16,8 +16,8 @@ mtlLoader.load("images/location02.mtl", function (materials) {
   materials.preload();
   loaderOBJ.setMaterials(materials);
   loaderOBJ.load("images/location02.obj", function (obj) {
-    obj.scale.set(0.1, 0.1, 0.1);
-    obj.rotation.set(-45 * PI_PER_180, 0, 0);
+    obj.scale.set(0.2, 0.2, 0.2);
+    obj.rotation.set(-0 * PI_PER_180, 0, 0);
     scene.add(obj);
     dolphin.obj = obj;
   });
@@ -179,7 +179,7 @@ var animate = function () {
   cubeCamera.update(renderer, sky);
   controls.update();
 
-  if (dolphin.obj != null) dolphin.obj.rotation.x += 0.1;
+
 
   // 랜더링을 수행합니다.
   renderer.render(scene, camera);
