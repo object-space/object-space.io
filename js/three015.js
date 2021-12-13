@@ -3,20 +3,38 @@ var framesPerSecond = 30;
 // 태양 초기 위치
 parameters.azimuth += 0.1;
 
-// var model;
-// var loaderMesh = new THREE.ColladaLoader();
-// loaderMesh.load("images/location02.dae", function (collada) {
-//   model = collada.scene;
-//   scene.add(model);
-// });
 
-// 돌고래
+function loadMTLLoader() {
+  mtlLoader = new THREE.MTLLoader();
+
+  // MTLLoader Material 파일을 사용할 전역 경로를 설정합니다.
+  mtlLoader.setPath('./images/');
+
+  // 로드할 Material 파일 명을 입력합니다.
+  mtlLoader.load('location02.mtl', function (materials) {
+      // 로드 완료되었을때 호출하는 함수
+      materials.preload();
+
+      loadOBJLoader(materials);
+  }, function (xhr) {
+      // 로드되는 동안 호출되는 함수
+      console.log('MTLLoader: ', xhr.loaded / xhr.total * 100, '% loaded');
+  }, function (error) {
+      // 로드가 실패했을때 호출하는 함수
+      console.error('MTLLoader 로드 중 오류가 발생하였습니다.', error);
+      alert('MTLLoader 로드 중 오류가 발생하였습니다.');
+  });
+}
+
+
+
 var dolphin = new Object();
 mtlLoader.load("images/location02.mtl", function (materials) {
   materials.preload();
   loaderOBJ.setMaterials(materials);
+  
   loaderOBJ.load("images/location02.obj", function (obj) {
-    obj.scale.set(0.2, 0.2, 0.2);
+    obj.scale.set(0.3, 0.3, 0.3);
     obj.rotation.set(-0 * PI_PER_180, 0, 0);
     scene.add(obj);
     dolphin.obj = obj;
