@@ -1,7 +1,7 @@
 var framesPerSecond = 30;
 
 // 태양 초기 위치
-parameters.azimuth += 0.1;
+parameters.azimuth += 0.2;
 
 
 // function loadMTLLoader() {
@@ -29,13 +29,14 @@ parameters.azimuth += 0.1;
 
 
 var dolphin = new Object();
-mtlLoader.load("images/location02.mtl", function (materials) {
+mtlLoader.load("images/object.mtl", function (materials) {
   materials.preload();
   loaderOBJ.setMaterials(materials);
   
-  loaderOBJ.load("images/location02.obj", function (obj) {
-    obj.scale.set(0.5, 0.5, 0.5);
+  loaderOBJ.load("images/object.obj", function (obj) {
+    obj.scale.set(10, 10, 10);
     obj.rotation.set(-0 * PI_PER_180, 0, 0);
+    obj.position.set(0,5,5);
     scene.add(obj);
     dolphin.obj = obj;
   });
