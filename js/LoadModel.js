@@ -1,6 +1,6 @@
 // 집 모델
 var home_mesh = new Object();
-loadDAE("images/untitled.dae", home_mesh, function (obj) {
+loadDAE("images/location03.dae", home_mesh, function (obj) {
   scene.add(obj);
   obj.rotation.set(-90 * PI_PER_180, 0, -90 * PI_PER_180);
   obj.position.set(1, 1, 1);
